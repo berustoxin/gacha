@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가챠</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>빗속 가챠</h1>
+    <p>버튼을 클릭하면 아래에 결과가 표시됩니다.</p>
+    <button onclick="rollGacha()">가챠 돌리기</button>
+    <div id="result">결과 확인란</div>
+
+    <script>
+        const items = [
+            { name: "이상한 약", weight: 1 },
+            { name: "시험약 A", weight: 5 },
+            { name: "시험약 B", weight: 5 },
+            { name: "시험약 C", weight: 5 },
+            { name: "시험약 D", weight: 5 },
+            { name: "비밀 쪽지 - 츠하", weight: 2 },
+            { name: "비밀 쪽지 - 양신의", weight: 2 },
+            { name: "비밀 쪽지 - 리벨리 레트론", weight: 2 },
+            { name: "비밀 쪽지 - 아리에 코토하", weight: 2 },
+            { name: "비밀 쪽지 - 로와", weight: 2 },
+            { name: "비밀 쪽지 - 마농 베다드", weight: 2 },
+            { name: "비밀 쪽지 - 오즈 메이신", weight: 2 },
+            { name: "비밀 쪽지 - 쇼우", weight: 2 },
+            { name: "비밀 쪽지 - 키츠네즈카 아키호", weight: 2 },
+            { name: "비밀 쪽지 - 키릴 베리야예프", weight: 2 },
+            { name: "교직원 일기 1 (츠하)", weight: 3 },
+            { name: "교직원 일기 2 (양신의)", weight: 3 },
+            { name: "교직원 일기 3 (리벨리 레트론)", weight: 3 },
+            { name: "교직원 일기 4 (아리에 코토하)", weight: 3 },
+            { name: "교직원 일기 5 (로와)", weight: 3 },
+            { name: "교직원 일기 6 (마농 베다드)", weight: 3 },
+            { name: "교직원 일기 7 (오즈 메이신)", weight: 3 },
+            { name: "교직원 일기 8 (쇼우)", weight: 3 },
+            { name: "교직원 일기 9 (키츠네즈카 아키호)", weight: 3 },
+            { name: "교직원 일기 10 (키릴 베리야예프)", weight: 3 },
+            { name: "녹음기", weight: 5 },
+            { name: "꽃다발", weight: 5 },
+            { name: "곰인형", weight: 5 },
+            { name: "향수", weight: 5 },
+            { name: "염색약", weight: 5 },
+            { name: "폴라로이드 카메라", weight: 5 },
+            { name: "휴대용 랜턴", weight: 5 },
+            { name: "스티커 팩", weight: 5 },
+            { name: "사탕 한 봉지", weight: 5 },
+            { name: "미니 초콜릿 한 박스", weight: 5 }
+        ];
+
+        function rollGacha() {
+            const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+            let random = Math.random() * totalWeight;
+            for (const item of items) {
+                if (random < item.weight) {
+                    document.getElementById("result").textContent = `당첨된 물품: ${item.name}`;
+                    return;
+                }
+                random -= item.weight;
+            }
+        }
+    </script>
+</body>
+</html>
